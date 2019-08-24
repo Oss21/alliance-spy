@@ -28,8 +28,22 @@ public class Board {
 	public void createCoefficienteMatrix(boolean repeatedNumbers, int row , int column ) {
 		
 	}
-	
 
-	
+
+
+    public boolean verifyIsPrimeNumber(int number) {
+
+        int counter = 2;
+        boolean prime = true;
+        while ((prime) && (counter != number)) {
+            if (number % counter == 0)
+                prime = false;
+            counter++;
+        }
+        return prime;
+    }
 
 }
+
+
+

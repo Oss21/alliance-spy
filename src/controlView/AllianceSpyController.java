@@ -1,13 +1,17 @@
 package controlView;
 
 import javafx.fxml.Initializable;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 
 public class AllianceSpyController implements Initializable {
@@ -23,11 +27,18 @@ public class AllianceSpyController implements Initializable {
     @FXML private JFXButton btRepeated;
     @FXML private JFXButton btGenerate;
     @FXML private Pane pPlaceMatrix;
+    @FXML private JFXTextField tfColumn;
+    @FXML private ScrollPane pMatrix;
+    @FXML private Pane pShowMatrix;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+
 
 
 

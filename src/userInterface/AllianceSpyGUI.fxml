@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<JFXTabPane fx:id="tapAplication" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.AllianceSpyController">
+   <tabs>
+      <Tab text="Tamaño de Matrices">
+        <content>
+            <BorderPane>
+               <center>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="453.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+                     <content>
+                        <Pane fx:id="pUserMatrix" prefHeight="451.0" prefWidth="848.0" />
+                     </content>
+                  </ScrollPane>
+               </center>
+               <top>
+                  <HBox prefHeight="110.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="148.0" prefWidth="707.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="224.0" text="Ingrese el tamaño de la matriz 1" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="70.0">
+                                 <children>
+                                    <JFXTextField fx:id="tfRows_1" prefHeight="30.0" prefWidth="110.0" promptText="Filas">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="tfColumn_1" prefWidth="110.0" promptText="Columnas">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="148.0" prefWidth="707.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="224.0" text="Ingrese el tamaño de la matriz 2" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="70.0">
+                                 <children>
+                                    <JFXTextField fx:id="tfRows_2" prefWidth="110.0" promptText="Filas">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="tfColumn_2" prefWidth="110.0" promptText="Columnas">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </top>
+               <bottom>
+                  <JFXButton buttonType="RAISED" onAction="#nextClicked" text="Siguiente" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </bottom>
+            </BorderPane>
+        </content>
+      </Tab>
+      <Tab fx:id="tabFillingForm" text="Forma de LLenado">
+        <content>
+        </content>
+         <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <VBox alignment="CENTER" prefHeight="110.0" prefWidth="850.0" spacing="5.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="193.0" text="Llenar matrices con números ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="70.0">
+                           <children>
+                              <JFXButton buttonType="RAISED" onAction="#differentClicked" text="Diferentes">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#repeatedClcicked" text="Repetidos">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </top>
+               <center>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="453.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+                     <content>
+                        <Pane fx:id="pFillMatrix" prefHeight="398.0" prefWidth="848.0" />
+                     </content>
+                  </ScrollPane>
+               </center>
+               <bottom>
+                  <VBox alignment="CENTER" prefHeight="53.0" prefWidth="707.0" spacing="5.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Multiplicar por">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <JFXButton buttonType="RAISED" onAction="#normalMultiplicationUserClicked" text="Multiplicación Normal">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#blockMultiplicationUserClicked" text="Multiplicación Por Bloques">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#linearCombinationUserClicked" text="Multiplicación Combinación Lineal">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </bottom></BorderPane>
+         </content>
+      </Tab>
+      <Tab text="Generar Lista Matrices">
+        <content>
+            <BorderPane>
+               <bottom>
+                  <VBox alignment="CENTER" prefHeight="53.0" prefWidth="707.0" spacing="5.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Multiplicar por">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <JFXButton buttonType="RAISED" onAction="#normalMultiplicationClicked" text="Multiplicación Normal">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#blockMultiplicationClicked" text="Multiplicación Por Bloques">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#linearCombinationClicked" text="Multiplicación Combinación Lineal">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </bottom>
+               <top>
+                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="707.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Generar lista de matrices">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXButton buttonType="RAISED" onAction="#generateClicked" text="Generar">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </top>
+               <center>
+                  <ScrollPane BorderPane.alignment="CENTER">
+                    <content>
+                        <Pane fx:id="pGeneratedMatrix" />
+                    </content>
+                  </ScrollPane>
+               </center>
+            </BorderPane>
+        </content>
+      </Tab>
+      <Tab text="Multiplicar Matrices">
+        <content>
+            <BorderPane>
+               <center>
+                  <ScrollPane BorderPane.alignment="CENTER">
+                     <content>
+                        <Pane fx:id="pShowMatrix" />
+                     </content>
+                  </ScrollPane>
+               </center>
+            </BorderPane>
+        </content>
+      </Tab>
+   </tabs>
+</JFXTabPane>

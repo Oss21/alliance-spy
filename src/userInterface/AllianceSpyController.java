@@ -253,11 +253,9 @@ public class AllianceSpyController implements Initializable {
         if (!pFillMatrix.getChildren().isEmpty()){
             pFillMatrix.getChildren().clear();
         }
-
          **/
 
         paintMatrix(pFillMatrix);
-
 
     }
 
@@ -421,7 +419,6 @@ public class AllianceSpyController implements Initializable {
                 }
             }
         }
-
         hBox.getChildren().add(grid);
         hBox.setLayoutY(50);
         hBox.setLayoutX(20);

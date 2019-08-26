@@ -240,8 +240,82 @@ public class Board {
 		return matrixResult;
 	}
 
+    /**
+     * Permite multiplicar matrices por bloques
+     * @param division permite indicar el valor de columnas de A y filas de B a dividir.
+     * @param a matriz A
+     * @param b matriz B
+     * @return la matriz multiplicada
+     * @throws MultiplicationNotSupportedException
+     */
+    public int[][] MultiplyByBox(int division, int [][] a, int [][] b) throws MultiplicationNotSupportedException {
+        ArrayList<int[][]> divisionA = null;
+        ArrayList<int[][]> divisionB = null;
+        int i = 0;
+        int j = 0;
+        while (i < a[0].length) {
+            divisionA.add(splitMatrix(i, i+division,j, j+division, a));
+            divisionB.add(splitMatrix(i, i+division,j, j+division, b));
+            i += division;
+            j +=division;
+        }
+
+        int[][] result =new  int [a[0].length][b.length];
+        int[][] matrix = null;
+        boolean exit = false;
+        for (int k = 0; k < divisionA.size(); k++) {
+            matrix = classicMultiplyMatrix(divisionA.get(i), divisionB.get(i));
+            for (int k2 = 0; k2 < result.length; k2++) {
+                for (int l = 0; l < result[k2].length && exit ; l++) {
+                    if (matrix.length == j) {
+                        exit = true;
+                    }else {
+                        result[i][j] = matrix[i][j];
+                    }
+                }
+            }
+        }
+
+        return result ;
+    }
+
+    /**
+     * Permite dividir una matriz en partes más pequeñas indicando que fila o columna a iniciar.
+     * @param initialR Fila inicial a tomar
+     * @param finishR Fila final
+     * @param initialC Columna iniciar a tomar
+     * @param finishC Columna final
+     * @param matrixA matriz a dividir
+     * @return una submatriz de la matrixA.
+     */
+    private int[][]  splitMatrix(int initialR, int finishR, int initialC, int finishC, int [][] matrixA ) {
+            int row = finishR-initialR;
+            int column = finishC-initialC;
+
+            int[][]  matrix = new int[++row][++column];
+            int i = 0;
+            int j = 0;
+            int auxColumn = initialC;
+            while(i < matrix.length) {
+                while(j <  matrix[i].length) {
+                    if(column ==  1) {
+                        matrix[i][j] =matrixA[initialR++][initialC];
+                    }else if(row == 1) {
+                        matrix[i][j] =matrixA[initialR][initialC++];
+                    }else {
+                        matrix[i][j] =matrixA[initialR][initialC];
+                        initialC++;
+                    }
+                    j++;
+                }
+                initialR++;
+                initialC = auxColumn;
+                i++;
+            }
 
 
+            return matrix;
+        }
 
 
 

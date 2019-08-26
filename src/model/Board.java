@@ -1,5 +1,7 @@
 package model;
 
+import customExceptions.MultiplicationNotSupportedException;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -120,7 +122,7 @@ public class Board {
      * @param selector - nombre del metodo a usar para la multiplicacion de matrices.
      * @return result - matriz resultante del proceso de multiplicacion.
      */
-	public int[][] multiplyMatrix(String selector){
+	public int[][] multiplyMatrix(String selector) throws MultiplicationNotSupportedException {
     	int[][] result = new int[0][0];
 
 		for (int i = 0; i < matrixList.size(); i++) {
@@ -136,9 +138,9 @@ public class Board {
 
                 case MULTIPLICATION_LINEAR_COMBINATION:
                     if (i == 0){
-
+                    	result = multiplicationLinearCombination(matrixList.get(0), matrixList.get(1));
                     }else if ((i+1) < matrixList.size()){
-
+                    	result = multiplicationLinearCombination(result, matrixList.get(i+1));
                     }
                     break;
 
@@ -160,9 +162,11 @@ public class Board {
      * @param matrixB - segunda matriz a multiplicar.
      * @return result - la matriz resultante de multiplicar matrixA con matrixB.
      */
-	public int[][] classicMultiplyMatrix(int[][] matrixA, int[][] matrixB){
-    	int[][] result = new int[matrixA.length][matrixB[0].length];
+	public int[][] classicMultiplyMatrix(int[][] matrixA, int[][] matrixB) throws MultiplicationNotSupportedException {
 
+		int[][] result = new int[matrixA.length][matrixB[0].length];
+
+		if (matrixA[0].length == matrixB.length){
 		for (int i = 0; i < result.length; i++) {
 			for (int j = 0; j < result[i].length; j++) {
 				for (int k = 0; k < matrixA.length; k++) {
@@ -170,8 +174,78 @@ public class Board {
 				}
 			}
 		}
+		}else{
+			throw new MultiplicationNotSupportedException("Matrices incompatibles para multiplicar");
+		}
+
 		return result;
 	}
+
+
+
+	/**
+	 * Multiplica dos matrices compatibles con el método de la multiplicacion como combinacion lineal.
+	 * @param A - Es la matriz A.
+	 * @param B - Es la matriz B.
+	 * @return - Una matric C que es el resultado de la multiplicacion de las matrices A y B.
+	 * @throws MultiplicationNotSupportedException - - Error que se lanza cuando las matrices no se pueden multiplicar.
+	 */
+	public int[][] multiplicationLinearCombination(int[][] A, int[][] B) throws MultiplicationNotSupportedException {
+		// Es la matriz resultado de la multiplicación.
+		int[][] matrixResult = new int[A.length][B[0].length];
+		if (A[0].length == B.length) {
+			// Es el vector columna de B.
+			int[] vColumn = new int[B.length];
+			for (int i = 0; i < B[0].length; i++) {
+				// Toma los vectores columna de B
+				for (int j = 0; j < B.length; j++) {
+					vColumn[j] = B[j][i];
+				}
+				// Es el vector resultado de la multiplicación.
+				int[][] vectorResult = matrixByVectorColumn(A, vColumn);
+				// Llena la matriz C de resultado
+				for (int k = 0; k < matrixResult.length; k++) {
+					matrixResult[k][i] = vectorResult[k][0];
+				}
+			}
+		} else {
+			throw new MultiplicationNotSupportedException("Matrices incompatibles para multiplicar");
+		}
+		return matrixResult;
+	}
+
+	/**
+	 * Multiplica una matriz con un vector.
+	 * @param A - Es la matriz A
+	 * @param V - Es el vector columna de la matriz B
+	 * @return - El vector resultado de la multiplicación de A y V.
+	 */
+	private int[][] matrixByVectorColumn(int[][] A, int[] V) {
+		// Tamaño de la matriz A
+		int fA = A.length;
+		int cA = A[0].length;
+		// Tamaño del vector
+		int fB = V.length;
+		int cB = 1;
+		// Crea el vector resultado
+		int[][] matrixResult = new int[fA][cB];
+		// Multiplica la matriz por el vector.
+		for (int i = 0; i < matrixResult.length; i++) {
+			for (int j = 0; j < matrixResult[i].length; j++) {
+				for (int k = 0; k < cA; k++) {
+					matrixResult[i][j] += A[i][k] * V[k];
+				}
+			}
+		}
+		return matrixResult;
+	}
+
+
+
+
+
+
+
 }
 
 
